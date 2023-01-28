@@ -13,9 +13,20 @@ var rotation_dir = 0 # direction controlled by sping power
 # for screen wrapping
 var screensize = Vector2()
 
+# for the bullets
+signal shoot
+
+export (PackedScene) var Bullet # this will insert the bullet scene
+export (float) var fire_rate
+
+var can_shoot = true
+var radius
+
 func _ready():
 	change_state(ALIVE)
-	screensize = get_viewport().get_visible_rect().size 
+	screensize = get_viewport().get_visible_rect().size
+	$GunTimer.wait_time = fire_rate
+	radius = int($Sprite.texture.get_size().x/2)
 	
 func _process(delta):
 	get_input()
@@ -29,14 +40,14 @@ func _integrate_forces(physics_state):
 	# come back to the opposite of the edge
 	
 	var xform = physics_state.get_transform()
-	if xform.origin.x > screensize.x:
-		xform.origin.x = 0
-	if xform.origin.x < 0:
-		xform.origin.x = screensize.x
-	if xform.origin.y > screensize.y:
-		xform.origin.y = 0
-	if xform.origin.y < 0:
-		xform.origin.y = screensize.y
+	if xform.origin.x > screensize.x + radius:
+		xform.origin.x = 0 - radius
+	if xform.origin.x < 0 - radius:
+		xform.origin.x = screensize.x + radius
+	if xform.origin.y > screensize.y + radius:
+		xform.origin.y = 0 - radius
+	if xform.origin.y < 0 - radius:
+		xform.origin.y = screensize.y + radius
 	physics_state.set_transform(xform)
 
 func change_state(new_state):
@@ -63,3 +74,18 @@ func get_input():
 		rotation_dir += 1
 	if Input.is_action_pressed("rotate_left"):
 		rotation_dir -= 1
+	if Input.is_action_pressed("shoot") and can_shoot:
+		shoot()
+
+func shoot():
+	if state == INVULNERUBLE:
+		return
+	
+	emit_signal("shoot", Bullet, $Muzzle.global_position, rotation)
+	$FartSound.play()
+	can_shoot = false
+	$GunTimer.start()
+
+
+func _on_GunTimer_timeout():
+	can_shoot = true
