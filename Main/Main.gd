@@ -64,3 +64,6 @@ func new_level():
 	for i in range(level):
 		spawn_rock(3)
 
+func game_over():
+	playing = false
+	$HUD.game_over()
