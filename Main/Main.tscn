@@ -8,7 +8,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1080, 0, 0, 0, 0, 0, 1080, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0 )
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1920, 0, 0, 0, 0, 0, 1920, 1080, 0, 0, 0, 0, 0, 1080, 0, 0, 0, 0, 0, 0 )
 }
 
 [node name="Main" type="Node"]
@@ -16,7 +16,7 @@ script = ExtResource( 3 )
 Rock = ExtResource( 1 )
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 528, 360 )
+position = Vector2( 960, 540 )
 texture = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
