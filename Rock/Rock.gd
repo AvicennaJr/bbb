@@ -19,17 +19,18 @@ func start(pos, vel, _size):
 	linear_velocity = vel 
 	angular_velocity = rand_range(-1.5, 1.5)
 	$Explosion.scale = Vector2(0.75, 0.75) * size
+	
 
 func _integrate_forces(physics_state):
 	var xform = physics_state.get_transform()
-	if xform.origin.x > screensize.x + radius:
-		xform.origin.x = 0 - radius
-	if xform.origin.x < 0 - radius:
-		xform.origin.x = screensize.x + radius
-	if xform.origin.y > screensize.y + radius:
-		xform.origin.y = 0 - radius
-	if xform.origin.y < 0 - radius:
-		xform.origin.y = screensize.y + radius
+	if xform.origin.x > screensize.x:
+		xform.origin.x = 0
+	if xform.origin.x < 0:
+		xform.origin.x = screensize.x
+	if xform.origin.y > screensize.y:
+		xform.origin.y = 0
+	if xform.origin.y < 0:
+		xform.origin.y = screensize.y
 	physics_state.set_transform(xform)
 
 func explode():
