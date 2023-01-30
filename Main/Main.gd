@@ -29,7 +29,7 @@ func spawn_rock(size, pos=null, vel=null):
 		$RockPath/RockSpawn.set_offset(randi())
 		pos = $RockPath/RockSpawn.position
 	if !vel:
-		vel = Vector2(1, 0).rotated(rand_range(0, 2*PI)) * rand_range(200, 250)
+		vel = Vector2(1, 0).rotated(rand_range(0, 2*PI)) * rand_range(100, 160)
 	
 	var r = Rock.instance()
 	r.screensize = screensize
