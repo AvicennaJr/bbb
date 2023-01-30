@@ -112,3 +112,7 @@ func start():
 	$Sprite.show()
 	self.lives = 3 # must use self. for setgets
 	change_state(ALIVE)
+
+
+func _on_InvulnerabilityTimer_timeout():
+	change_state(ALIVE)
