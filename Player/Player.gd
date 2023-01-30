@@ -26,7 +26,8 @@ func _ready():
 	change_state(ALIVE)
 	screensize = get_viewport().get_visible_rect().size
 	$GunTimer.wait_time = fire_rate
-	radius = int($Sprite.texture.get_size().x/2)
+	# radius = int($Sprite.texture.get_size().x/2)
+	radius = int($CollisionShape2D.shape.radius/2)
 	
 func _process(delta):
 	get_input()
