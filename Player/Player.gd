@@ -122,3 +122,15 @@ func _on_InvulnerabilityTimer_timeout():
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	$Explosion.hide()
+
+
+func _on_Player_body_entered(body):
+	if body.is_in_group('rocks'):
+		body.explode()
+		$Explosion.show()
+		$Explosion/AnimationPlayer.play("explosion")
+		self.lives -= 1
+		if lives <= 0:
+			change_state(DEAD)
+		else:
+			change_state(INVULNERUBLE)
