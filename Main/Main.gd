@@ -63,3 +63,4 @@ func new_level():
 	$HUD.show_message("Wave %s" % level)
 	for i in range(level):
 		spawn_rock(3)
+
