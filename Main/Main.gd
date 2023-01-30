@@ -4,13 +4,21 @@ export (PackedScene) var Rock
 
 var screensize = Vector2()
 
+var level = 0
+var score = 0
+var playing = false
+
 func _ready():
 	randomize()
 	screensize = get_viewport().get_visible_rect().size
 	$Player.screensize = screensize
 	for i in range(3):
 		spawn_rock(3)
-	
+
+func _process(delta):
+	if playing and $Rocks.get_child_count() == 0:
+		new_level()
+
 func _on_Player_shoot(bullet, pos, dir):
 	var b = bullet.instance()
 	b.start(pos, dir)
@@ -37,3 +45,21 @@ func _on_Rock_exploded(size, radius, pos, vel):
 		var newpos = pos + dir * radius
 		var newvel = dir * vel.length() * 1.1
 		spawn_rock(size-1, newpos, newvel)
+
+func new_game():
+	for rock in $Rocks.get_children():
+		rock.queue_free()
+	level = 0
+	score = 0
+	$HUD.update_score(score)
+	$Player.start()
+	$HUD.show_message("Get Ready Nigga!")
+	yield($HUD/MessageTimer, "timeout")
+	playing = true
+	new_level()
+
+func new_level():
+	level += 1
+	$HUD.show_message("Wave %s" % level)
+	for i in range(level):
+		spawn_rock(3)
