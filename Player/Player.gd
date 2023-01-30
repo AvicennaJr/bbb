@@ -17,6 +17,8 @@ var screensize = Vector2()
 signal shoot
 # for lives count
 signal lives_changed
+# for dead
+signal dead
 
 var lives = 0 setget set_lives # save lives function called when value of lives changes
 
@@ -59,12 +61,19 @@ func change_state(new_state):
 	match new_state:
 		INIT:
 			$CollisionShape2D.disabled = true
+			$Sprite.modulate.a = 0.5
 		ALIVE:
 			$CollisionShape2D.disabled = false
+			$Sprite.modulate.a = 1.0
 		INVULNERUBLE:
 			$CollisionShape2D.disabled = true
+			$Sprite.modulate.a = 0.5
+			$InvulnerabilityTimer.start()
 		DEAD:
 			$CollisionShape2D.disabled = true
+			$Sprite.hide()
+			linear_velocity = Vector2()
+			emit_signal("dead")
 	state = new_state
 
 func get_input():
