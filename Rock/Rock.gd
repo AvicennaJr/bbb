@@ -41,5 +41,5 @@ func explode():
 	angular_velocity = 0
 
 
-func _on_AnimationPlayer_animation_finished(name):
+func _on_AnimationPlayer_animation_finished(_name):
 	queue_free()
