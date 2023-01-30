@@ -116,3 +116,7 @@ func start():
 
 func _on_InvulnerabilityTimer_timeout():
 	change_state(ALIVE)
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	$Explosion.hide()
