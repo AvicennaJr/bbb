@@ -11,9 +11,9 @@ radius = 30.2655
 
 [node name="Player" type="RigidBody2D"]
 linear_damp = 1.0
-angular_damp = 10.0
+angular_damp = 5.0
 script = ExtResource( 2 )
-engine_power = 1000
+engine_power = 500
 spin_power = 15000
 Bullet = ExtResource( 3 )
 fire_rate = 0.25
