@@ -15,6 +15,10 @@ var screensize = Vector2()
 
 # for the bullets
 signal shoot
+# for lives count
+signal lives_changed
+
+var lives = 0 setget set_lives # save lives function called when value of lives changes
 
 export (PackedScene) var Bullet # this will insert the bullet scene
 export (float) var fire_rate
@@ -90,3 +94,12 @@ func shoot():
 
 func _on_GunTimer_timeout():
 	can_shoot = true
+
+func set_lives(value):
+	lives = value
+	emit_signal("lives_changed", lives)
+
+func start():
+	$Sprite.show()
+	self.lives = 3 # must use self. for setgets
+	change_state(ALIVE)
