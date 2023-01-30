@@ -31,5 +31,6 @@ curve = SubResource( 1 )
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 
+[connection signal="lives_changed" from="Player" to="HUD" method="update_lives"]
 [connection signal="shoot" from="Player" to="." method="_on_Player_shoot"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
