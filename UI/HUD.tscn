@@ -27,19 +27,19 @@ custom_constants/margin_bottom = 20
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 1060.0
+margin_right = 1900.0
 margin_bottom = 92.0
 
 [node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer"]
-margin_right = 914.0
+margin_right = 1754.0
 margin_bottom = 72.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
 text = "0"
 
 [node name="LivesCounter" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_left = 918.0
-margin_right = 1040.0
+margin_left = 1758.0
+margin_right = 1880.0
 margin_bottom = 72.0
 
 [node name="L1" type="TextureRect" parent="MarginContainer/HBoxContainer/LivesCounter"]
@@ -78,6 +78,7 @@ texture_hover = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 2 )
+align = 1
 
 [node name="MessageTimer" type="Timer" parent="."]
 wait_time = 2.0
